@@ -1,0 +1,32 @@
+version: '3'
+
+volumes:
+  nf_postgres_data: {}
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: ./compose/fastapi/Dockerfile
+    container_name: nf_fastapi
+    restart: always
+    depends_on:
+      - postgres
+    env_file:
+      - ./.envs_example/.fastapi
+      - ./.envs_example/.postgres
+    ports:
+      - "80:80"
+    entrypoint: /app/start.sh
+
+  postgres:
+    build:
+      dockerfile: ./compose/postgres/Dockerfile
+    container_name: nf_postgres
+    restart: always
+    volumes:
+      - nf_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.envs_example/.postgres
+    ports:
+      - "5432:5432"
