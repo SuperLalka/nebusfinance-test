@@ -3,7 +3,6 @@ import uuid
 from sqlalchemy import (
     func,
     inspect,
-    BIGINT,
     Column,
     DateTime,
     ForeignKey,
@@ -38,8 +37,9 @@ class Activity(Base):
     title: Mapped[str] = mapped_column(String, nullable=False)
 
     activity_id: Mapped[int] = mapped_column(
-        BIGINT,
+        Integer,
         ForeignKey("activity.id", ondelete="SET NULL"),
+        nullable=True
     )
 
     organizations: Mapped[list["Organization"]] = relationship(
