@@ -97,7 +97,12 @@
 docker-compose -f docker-compose.yml up -d --build
 ```
 
-### Examples
+Запуск тестов:
+```sh
+docker-compose -f test.yml up --build
+```
+
+### Documentation
 
 #### Примеры запросов:
 
@@ -135,9 +140,6 @@ http://0.0.0.0/api/v1/organizations/?within_radius_point=53.88974510260204,27.56
 ```http request
 http://0.0.0.0/api/v1/organizations/?within_area_points=53.969592 27.429032,53.802464 27.415299,53.813843 27.711930,53.987401 27.720170,53.969592 27.429032
 ```
-
-
-### Documentation
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

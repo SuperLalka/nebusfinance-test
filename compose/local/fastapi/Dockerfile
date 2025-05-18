@@ -23,7 +23,9 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
 COPY ./app /app/app
 
+COPY pyproject.toml /app/
+
 COPY ./alembic.ini .
 
-COPY ./compose/fastapi/start.sh .
+COPY ./compose/local/fastapi/start.sh .
 RUN chmod +x /app/start.sh

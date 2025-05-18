@@ -12,7 +12,12 @@ router = APIRouter(
 )
 
 
-@router.get("", response_model=List[BuildingOutput])
+@router.get(
+    "",
+    response_model=List[BuildingOutput],
+    summary="Get list of buildings",
+    description="Returns a list of all buildings in the database"
+)
 @router.get("/", response_model=List[BuildingOutput], include_in_schema=False)
 async def get_buildings(
     request: Request,
@@ -21,7 +26,12 @@ async def get_buildings(
     return await BuildingService(session).get_all()
 
 
-@router.post("", response_model=BuildingOutput)
+@router.post(
+    "",
+    response_model=BuildingOutput,
+    summary="Create building",
+    description="Create a building entry with all the information, address and coordinates"
+)
 @router.post("/", response_model=BuildingOutput, include_in_schema=False)
 async def create_building(
     request: Request,
@@ -31,7 +41,12 @@ async def create_building(
     return await BuildingService(session).create(building_data)
 
 
-@router.delete("/{building_id}", status_code=204)
+@router.delete(
+    "/{building_id}",
+    summary="Delete building",
+    description="Delete a building by id",
+    status_code=204,
+)
 @router.delete("/{building_id}/", status_code=204, include_in_schema=False)
 async def delete_building(
     request: Request,

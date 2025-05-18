@@ -17,17 +17,8 @@ app = FastAPI(
     debug=settings.DEBUG,
 )
 
-
-@app.on_event("startup")
-async def startup():
-    app.include_router(router_api)
-
-
-@app.on_event("shutdown")
-async def shutdown():
-    pass
-
+app.include_router(router_api)
 
 app.add_exception_handler(RequestValidationError, exceptions.handler_for_request_validation_error)
 app.add_exception_handler(ResponseValidationError, exceptions.handler_for_response_validation_error)
-app.add_exception_handler(HTTPException, exceptions.handler_for_response_validation_error)
+app.add_exception_handler(HTTPException, exceptions.handler_for_http_exception)

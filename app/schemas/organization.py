@@ -25,6 +25,10 @@ class OrganizationOutput(OrganizationBase):
     updated_at: datetime.datetime
 
 
+class OrganizationUpdate(OrganizationBase):
+    pass
+
+
 class OrganizationFilterDTO(BaseModel):
     activity_id: Optional[str] = None
     activity_group: Optional[str] = None

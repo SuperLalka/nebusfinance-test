@@ -26,3 +26,7 @@ class BuildingOutput(BuildingBase):
     @field_validator("coordinates", mode="before")
     def turn_coordinates_into_wkt(cls, value):
         return to_shape(value).wkt
+
+
+class BuildingUpdate(BuildingBase):
+    coordinates: str

@@ -7,7 +7,7 @@ services:
   fastapi:
     build:
       context: .
-      dockerfile: ./compose/fastapi/Dockerfile
+      dockerfile: ./compose/local/fastapi/Dockerfile
     container_name: nf_fastapi
     restart: always
     depends_on:
@@ -21,7 +21,7 @@ services:
 
   postgres:
     build:
-      dockerfile: ./compose/postgres/Dockerfile
+      dockerfile: ./compose/local/postgres/Dockerfile
     container_name: nf_postgres
     restart: always
     volumes:

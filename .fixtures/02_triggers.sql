@@ -3,7 +3,7 @@
 -- Name: public.check_activity_nested_level; Type: FUNCTION; Schema: public; Owner: debug
 --
 
-CREATE FUNCTION public.check_activity_nested_level()
+CREATE OR REPLACE FUNCTION public.check_activity_nested_level()
 RETURNS trigger
 AS $$
 BEGIN
@@ -26,7 +26,7 @@ $$ LANGUAGE plpgsql;
 -- Name: check_activity_insert_trigger; Type: TRIGGER; Schema: public; Owner: debug
 --
 
-CREATE TRIGGER check_activity_insert_trigger
+CREATE OR REPLACE TRIGGER check_activity_insert_trigger
     BEFORE INSERT
     ON public.activity
     FOR EACH ROW

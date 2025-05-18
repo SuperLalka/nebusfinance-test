@@ -1,0 +1,32 @@
+version: '3'
+
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: ./compose/local/fastapi/Dockerfile
+    container_name: nf_test_fastapi
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: nebusfinance_test_db
+      POSTGRES_USER: debug
+      POSTGRES_PASSWORD: debug
+    ports:
+      - "80:80"
+    command: bash -c "pytest --disable-warnings"
+
+  postgres:
+    build:
+      dockerfile: ./compose/test/postgres/Dockerfile
+    container_name: nf_test_postgres
+    restart: always
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: nebusfinance_test_db
+      POSTGRES_USER: debug
+      POSTGRES_PASSWORD: debug
