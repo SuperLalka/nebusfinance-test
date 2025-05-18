@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "56464763-3ddd-41e6-922f-29cf7a979e2c",
+		"name": "REST API nebusfinance-test",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" width=\"2162\" height=\"1530\">\n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23498015"
+	},
+	"item": [
+		{
+			"name": "Get by name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{v1_api}}/organizations/?name=Минский",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{v1_api}}",
+						"organizations",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Минский"
+						}
+					]
+				},
+				"description": "Этот запрос возвращает список организаций в названии которых встречается знaчение из ключа name. Поиск выполняется регистронезависимо.\n\nУспешный ответ GET будет иметь статус 200 OK и содержать в теле ответа список объектов в формате JSON."
+			},
+			"response": []
+		},
+		{
+			"name": "Get by building id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{v1_api}}/organizations/?building_id=1444a266-ee1f-4820-af5e-024b2120679a",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{v1_api}}",
+						"organizations",
+						""
+					],
+					"query": [
+						{
+							"key": "building_id",
+							"value": "1444a266-ee1f-4820-af5e-024b2120679a"
+						}
+					]
+				},
+				"description": "Этот запрос возвращает список организаций которые расположены в определённом здании, которое определёно знaчением ключа building_id.\n\nУспешный ответ GET будет иметь статус 200 OK и содержать в теле ответа список объектов в формате JSON."
+			},
+			"response": []
+		},
+		{
+			"name": "Get by activity id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{v1_api}}/organizations/?activity_id=6",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{v1_api}}",
+						"organizations",
+						""
+					],
+					"query": [
+						{
+							"key": "activity_id",
+							"value": "6"
+						}
+					]
+				},
+				"description": "Этот запрос возвращает список организаций которые относятся к определённому виду деятельности, который определён знaчением ключа activity_id.\n\nУспешный ответ GET будет иметь статус 200 OK и содержать в теле ответа список объектов в формате JSON."
+			},
+			"response": []
+		},
+		{
+			"name": "Get by activity group",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{v1_api}}/organizations/?activity_group=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{v1_api}}",
+						"organizations",
+						""
+					],
+					"query": [
+						{
+							"key": "activity_group",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Этот запрос возвращает список организаций которые относятся к определённой группе видов деятельности (включая подвиды вниз по дереву поиска), которая определёна знaчением ключа activity_group.\n\nУспешный ответ GET будет иметь статус 200 OK и содержать в теле ответа список объектов в формате JSON."
+			},
+			"response": []
+		},
+		{
+			"name": "Get by within radius",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{v1_api}}/organizations/?within_radius_point=53.88974510260204,27.56195161073504&within_radius_distance=100",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{v1_api}}",
+						"organizations",
+						""
+					],
+					"query": [
+						{
+							"key": "within_radius_point",
+							"value": "53.88974510260204,27.56195161073504"
+						},
+						{
+							"key": "within_radius_distance",
+							"value": "100"
+						}
+					]
+				},
+				"description": "Этот запрос возвращает список организаций здания которых расположены в определённой области на карте, область формируется из точки (ключа within_radius_point) и радиуса (ключ within_radius_distance) от неё.\n\nУспешный ответ GET будет иметь статус 200 OK и содержать в теле ответа список объектов в формате JSON."
+			},
+			"response": []
+		},
+		{
+			"name": "Get by within area",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{v1_api}}/organizations/?within_area_points=53.969592 27.429032,53.802464 27.415299,53.813843 27.711930,53.987401 27.720170,53.969592 27.429032",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{v1_api}}",
+						"organizations",
+						""
+					],
+					"query": [
+						{
+							"key": "within_area_points",
+							"value": "53.969592 27.429032,53.802464 27.415299,53.813843 27.711930,53.987401 27.720170,53.969592 27.429032"
+						}
+					]
+				},
+				"description": "Этот запрос возвращает список организаций здания которых расположены в определённой области на карте, область формируется из списка точек на карте, которые образуют замкнутую фигуру, определяется ключом within_area_points.\n\nУспешный ответ GET будет иметь статус 200 OK и содержать в теле ответа список объектов в формате JSON."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://0.0.0.0:80"
+		},
+		{
+			"key": "v1_api",
+			"value": "api/v1",
+			"type": "string"
+		}
+	]
+}
