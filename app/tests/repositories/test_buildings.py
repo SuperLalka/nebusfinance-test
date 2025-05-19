@@ -1,6 +1,7 @@
 import random
 
 from faker import Faker
+from geoalchemy2.shape import to_shape
 from sqlalchemy.orm import Session
 
 from app.repository.building import BuildingRepository
@@ -19,7 +20,7 @@ async def test_create_building(db: Session, faker: Faker) -> None:
     building_in = BuildingInput(**new_building_data)
     building = await BuildingRepository(db).create(building_in)
     assert building.address == new_building_data['address']
-    # assert building.coordinates == f"POINT({new_building_data['lat']} {new_building_data['long']})"
+    assert to_shape(building.coordinates).wkt == f"POINT ({new_building_data['lat']} {new_building_data['long']})"
 
 
 async def test_exists_by_id_building(db: Session, building: BuildingFactory) -> None:
@@ -51,17 +52,17 @@ async def test_update_building(db: Session, faker: Faker) -> None:
 
     new_building_data = {
         "address": faker.address(),
-        "coordinates": f"POINT({faker.latitude()} {faker.longitude()})",
+        "coordinates": f"POINT ({faker.latitude()} {faker.longitude()})",
     }
     building_update = BuildingUpdate(**new_building_data)
 
     assert building.address != building_update.address
-    # assert to_shape(building.coordinates).wkt != building_update.coordinates
+    assert to_shape(building.coordinates).wkt != building_update.coordinates
 
     await BuildingRepository(db).update(building, building_update)
 
     assert building.address == building_update.address
-    # assert to_shape(building.coordinates).wkt == building_update.coordinates
+    assert to_shape(building.coordinates).wkt == building_update.coordinates
 
 
 async def test_delete_building(db: Session) -> None:
